@@ -8,3 +8,50 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.center {
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.p-16 {
+  padding: 16px;
+}
+
+.bold {
+  font-weight: 400;
+}
+.bolder {
+  font-weight: 500;
+}
+
+.text-center {
+  text-align: center;
+}
+
+// flex classes
+
+.d-flex {
+  display: flex;
+}
+
+.align-item-center {
+  align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.flex-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

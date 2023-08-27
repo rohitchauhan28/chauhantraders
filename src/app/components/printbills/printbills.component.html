@@ -1,0 +1,97 @@
+<div
+  style="
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  "
+>
+  <ng-container *ngFor="let bill of bills">
+    <mat-card
+      style="
+        padding: 16px;
+        width: 20%;
+        min-height: 100%;
+        margin: 8px;
+        display: inline-block;
+      "
+    >
+      <div style="font-weight: 500; font-size: 16px">
+        {{ bill.customerDetails.name }}
+      </div>
+      <div style="font-weight: 500; font-size: 12px">
+        {{ bill.dateOfPurchase | date : "mediumDate" }}
+      </div>
+      <div style="font-weight: 500; font-size: 12px">
+        {{ bill.customerDetails.address }}
+      </div>
+      <div style="font-weight: 500; font-size: 12px">
+        {{ bill.customerDetails.phoneNo }}
+      </div>
+      <ng-container *ngFor="let item of bill.purchaseItems">
+        <div
+          style="
+            display: flex;
+            min-width: 100%;
+            padding: 8px;
+            border-bottom: 1px solid rgb(195 187 187);
+            box-sizing: border-box;
+          "
+        >
+          <div style="min-width: 60%">{{ item.itemName }}</div>
+          <div
+            style="
+              min-width: 20%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            {{ item.quantity }}
+          </div>
+          <div
+            style="
+              min-width: 20%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            {{ item.price }}
+          </div>
+        </div>
+      </ng-container>
+      <div
+        style="
+          display: flex;
+          min-width: 100%;
+          padding: 8px;
+          border-bottom: 1px solid rgb(195 187 187);
+          box-sizing: border-box;
+        "
+      >
+        <div style="min-width: 60%"><b>Total</b></div>
+        <div
+          style="
+            min-width: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <b>{{ bill.totalPurchaseItemsCount }}</b>
+        </div>
+        <div
+          style="
+            min-width: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <b>{{ bill.totalPurchaseItemsPrice }}</b>
+        </div>
+      </div>
+    </mat-card>
+  </ng-container>
+</div>

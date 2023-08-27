@@ -1,0 +1,1 @@
+export const LOGIN_PASSWORD = "21bb585227e477b5a41619f37f3d60aa8e847d6a";

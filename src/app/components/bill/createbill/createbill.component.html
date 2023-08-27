@@ -1,0 +1,36 @@
+<form style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 16px 0 16px;
+  ">
+  <h1 class="bold text-center">Create Bill</h1>
+  <mat-form-field style="height: 55px">
+    <mat-label>Select shop</mat-label>
+    <input
+      type="text"
+      placeholder="Search shop..."
+      aria-label="Select shop"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+      (keyup)="onSearch($event)"
+      autofocus
+    />
+    <mat-autocomplete
+      autoActiveFirstOption
+      #auto="matAutocomplete"
+      (optionSelected)="optionSelectedEvent($event)"
+      [displayWith]="getDisplayValue"
+    >
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option"
+      >
+        {{ option.ownerName }} - {{ option.shopName }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<app-bill-form></app-bill-form>

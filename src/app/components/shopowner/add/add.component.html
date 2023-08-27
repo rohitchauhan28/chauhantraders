@@ -1,0 +1,65 @@
+<form
+  [formGroup]="myForm"
+  (ngSubmit)="onSubmit()"
+  style="
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  "
+>
+  <h1>Add new shop owner</h1>
+  <mat-form-field >
+    <mat-label>Shop owner name</mat-label>
+    <input matInput formControlName="name" required />
+    <mat-error *ngIf="myForm.get('name')?.hasError('required')"
+      >Name is required</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Contact number</mat-label>
+    <input
+      matInput
+      formControlName="contactNumber"
+      required
+      pattern="[1-9][0-9]{9}"
+    />
+    <mat-error *ngIf="myForm.get('contactNumber')?.hasError('required')"
+      >Contact number is required</mat-error
+    >
+    <mat-error *ngIf="myForm.get('contactNumber')?.hasError('pattern')"
+      >Contact number should be 10 digit</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Shop address</mat-label>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+      formControlName="address"
+    >
+    </textarea>
+    <mat-error *ngIf="myForm.get('address')?.hasError('required')"
+      >Address is required</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Shop name</mat-label>
+    <input matInput formControlName="shopName" required />
+    <mat-error *ngIf="myForm.get('shopName')?.hasError('required')"
+      >Shop name is required</mat-error
+    >
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="myForm.invalid">
+    Submit
+  </button>
+</form>

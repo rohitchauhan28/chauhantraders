@@ -1,0 +1,41 @@
+<form
+  [formGroup]="productForm"
+  style="display: flex; flex-direction: column; padding: 16px"
+>
+  <h1 class="center">Add new product details</h1>
+  <mat-form-field >
+    <mat-label>Product Name</mat-label>
+    <input matInput formControlName="productName" required />
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Price Per Unit</mat-label>
+    <input matInput type="number" formControlName="pricePerUnit" required />
+  </mat-form-field>
+
+  <div style="font-weight: 500; font-size: 16px">Per pack section</div>
+  <mat-form-field >
+    <mat-label>Price Per Pack</mat-label>
+    <input matInput type="number" formControlName="pricePerPack" required />
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Quantity Per Pack</mat-label>
+    <input matInput type="number" formControlName="quantityPerPack" required />
+  </mat-form-field>
+
+  <div style="font-weight: 500; font-size: 16px">Per box section</div>
+  <mat-form-field >
+    <mat-label>Price Per Box</mat-label>
+    <input matInput type="number" formControlName="pricePerBox" required />
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Quantity Per Box</mat-label>
+    <input matInput type="number" formControlName="quantityPerBox" required />
+  </mat-form-field>
+
+  <button style="width: 40%" mat-raised-button color="primary">
+    Add Product
+  </button>
+</form>

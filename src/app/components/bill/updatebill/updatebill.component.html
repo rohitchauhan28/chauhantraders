@@ -1,0 +1,76 @@
+<form [formGroup]="formGroup">
+
+  <div style="
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    ">
+    <mat-form-field>
+      <mat-label>Product name</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="productName"
+        [matAutocomplete]="auto"
+        (keyup)="onProductNameSearch()"
+        autofocus
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #auto="matAutocomplete"
+        [displayWith]="getDisplayValue"
+        (optionSelected)="onProductSelected($event)"
+      >
+        <mat-option
+          *ngFor="let product of filteredProducts | async"
+          [value]="product"
+        >
+          {{ product.productName }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select quantity type</mat-label>
+      <mat-select formControlName="quantityType">
+        <mat-option
+          *ngFor="let type of quantityTypes"
+          [value]="type"
+        >
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Enter quantity</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="quantity"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="button-container">
+    <button
+      class="button"
+      mat-raised-button
+      type="submit"
+      color="primary"
+      (click)="onCancelButtonClick($event)"
+    >
+      Cancel
+    </button>
+    <button
+      class="button"
+      mat-raised-button
+      type="button"
+      color="primary"
+      (click)="onUpdateButtonClick($event)"
+    >
+      Update
+    </button>
+  </div>
+
+</form>
