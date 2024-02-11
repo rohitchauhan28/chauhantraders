@@ -7,8 +7,7 @@ import {
 } from "./constants/credentials";
 import { AuthService } from "./services/auth.service";
 import { DataService } from "./services/data.service";
-import { ActivatedRoute, ActivationEnd, ActivationStart, NavigationEnd, Router } from "@angular/router";
-import { filter } from "rxjs/operators";
+import { ActivationStart, Router } from "@angular/router";
 
 declare var gapi: any;
 declare var google: any;
@@ -40,7 +39,7 @@ export class AppComponent {
     this.gisLoaded();
     if (!this.authService.accessToken && localStorage.getItem("accessToken")) {
       this.authService.setAccessToken(localStorage.getItem("accessToken") ?? "");
-      // this.dataService.uploadDataReset().subscribe(()=>{});
+      // this.dataService.uploadDataReset().subscribe(()=>{}); 
       // this.dataService.downloadData().subscribe(() => {
         // this.router.navigateByUrl("dashboard");
       // });
