@@ -164,7 +164,7 @@ export class BillFormComponent implements OnInit {
       this.setFocusToProductNameInput();
     });
 
-  }
+  } 
 
   setFocusToProductNameInput() {
     this.element.nativeElement.querySelector("#product-name-input").focus();

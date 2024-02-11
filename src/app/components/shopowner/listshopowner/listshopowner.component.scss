@@ -1,0 +1,25 @@
+.main-container {
+  padding: 15px;
+  .filter-container {
+    margin-bottom: 20px;
+  }
+  .card {
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
+    .shopownerdetails {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+      &-item {
+        display: flex;
+        justify-content: space-between;
+        &_value {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

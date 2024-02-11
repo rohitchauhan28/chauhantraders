@@ -1,0 +1,63 @@
+
+
+<div class="main-container">
+  <h1 class="main-title">Shopowner List</h1>
+  <div class="filter-container">
+    <form [formGroup]="filterForm">      
+      <mat-form-field appearance="fill" class="w100">
+        <mat-label>Select filter type</mat-label>
+        <mat-select formControlName="filterSearchType">
+          <mat-option *ngFor="let filter of filterType" [value]="filter.value">
+            {{filter.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w100">
+        <mat-label>Search</mat-label>
+        <input matInput formControlName="filterText">
+      </mat-form-field>
+      <button class="mr3" mat-raised-button color="primary" [disabled]="!filterForm.valid" (click)="filterList()">
+        Filter shopowners
+      </button>
+      <button mat-raised-button color="primary" [disabled]="!isFilterApplied" (click)="resetList()">
+        Filter Reset
+      </button>
+    </form>
+
+  </div>
+  <div class="shopownerlist-container">
+    <ng-container *ngFor="let shopowner of filteredShopownerList">
+      <div class="card">
+        <div class="text-right">
+          <button mat-mini-fab color="primary" (click)="triggerEditHandler(shopowner.shopId)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <div class="shopownerdetails">
+          <div class="shopownerdetails-item">
+            <div class="shopownerdetails-item_title">Shop Id</div>
+            <div class="shopownerdetails-item_value">{{shopowner?.shopId}}</div>
+          </div>
+          <div class="shopownerdetails-item">
+            <div class="shopownerdetails-item_title">Shopowner Name</div>
+            <div class="shopownerdetails-item_value">{{shopowner?.ownerName}}</div>
+          </div>
+          <div class="shopownerdetails-item">
+            <div class="shopownerdetails-item_title">Shop Name</div>
+            <div class="shopownerdetails-item_value">{{shopowner?.shopName}}</div>
+          </div>
+          <div class="shopownerdetails-item">
+            <div class="shopownerdetails-item_title">Contact Number</div>
+            <div class="shopownerdetails-item_value">{{shopowner?.contactNumber}}</div>
+          </div>
+          <div class="shopownerdetails-item">
+            <div class="shopownerdetails-item_title">Address</div>
+            <div class="shopownerdetails-item_value">{{shopowner?.address}}</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  
+</div>
+

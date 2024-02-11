@@ -1,0 +1,43 @@
+{
+  "bills": [
+    {
+      "billNo": 1,
+      "shopOwnersId": 1,
+      "billDate": "2024-01-06T17:54:17.536Z",
+      "totalItem": 1,
+      "totalPaymentAmount": 400,
+      "isDeleted": false,
+      "productList": [
+        {
+          "productId": 1,
+          "quantity": 12,
+          "quantityType": "Pack",
+          "pricePerUnit": 10,
+          "pricePerPack": 200,
+          "pricePerBox": 2000,
+          "price": 100
+        }
+      ]
+    }
+  ],
+  "shopOwners": [
+    {
+      "shopId": 1,
+      "ownerName": "Sanjay Patil",
+      "contactNumber": "9823783443",
+      "address": "Nanded",
+      "shopName": "Mauli Kirana"
+    }
+  ],
+  "products": [
+    {
+      "productId": 1,
+      "productName": "colgate 10",
+      "pricePerUnit": 10,
+      "pricePerPack": 200,
+      "pricePerBox": 2000,
+      "quantityPerPack": 12,
+      "quantityPerBox": 15
+    }
+  ]
+}

@@ -5,15 +5,13 @@
     display: flex;
     flex-direction: column;
     row-gap: 16px;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    padding: 20px;
   "
 >
-  <h1>Add new shop owner</h1>
+  <h1>{{shopId ? 'Update shopowner details': 'Add new shop owner'}}</h1>
   <mat-form-field >
     <mat-label>Shop owner name</mat-label>
-    <input matInput formControlName="name" required />
+    <input matInput formControlName="ownerName" required />
     <mat-error *ngIf="myForm.get('name')?.hasError('required')"
       >Name is required</mat-error
     >
@@ -59,7 +57,7 @@
     >
   </mat-form-field>
 
-  <button mat-raised-button color="primary" [disabled]="myForm.invalid">
-    Submit
+  <button mat-raised-button color="primary" [disabled]="isDisabled || myForm.untouched || myForm.invalid">
+    {{shopId ? 'Update': 'Submit'}}
   </button>
 </form>

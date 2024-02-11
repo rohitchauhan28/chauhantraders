@@ -9,7 +9,9 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatSelectModule } from "@angular/material/select";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
-
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatSidenavModule} from "@angular/material/sidenav";      
+import {MatListModule} from "@angular/material/list";
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -21,7 +23,10 @@ import { MatIconModule } from "@angular/material/icon";
     MatButtonModule,
     MatSelectModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: "outline" }}

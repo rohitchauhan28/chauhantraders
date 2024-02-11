@@ -1,0 +1,23 @@
+mat-drawer-container {
+  height: 100%;
+}
+
+.company-title {
+  font-size: 16px;
+}
+
+.active {
+  background: rgba(63,81,181,.15);
+  color: #3f51b5;
+}
+
+.hover {
+  color: rgba(0,0,0,.87);
+}
+
+.drawer-container {
+  width: 200px;
+  mat-list-item {
+    cursor: pointer;
+  }
+}

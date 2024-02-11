@@ -1,1 +1,58 @@
-<router-outlet></router-outlet>
+<mat-drawer-container hasBackdrop="true">
+  <mat-drawer #drawer mode="over">
+    <div class="drawer-container">
+      <mat-list>
+        <mat-list-item 
+          [routerLink]="['/dashboard']" 
+          routerLinkActive="active"
+          (click)="drawer.toggle()"
+        >
+          Dashboard
+        </mat-list-item>
+        <mat-list-item
+          [routerLink]="['/shopowner/add']"
+          routerLinkActive="active"
+          (click)="drawer.toggle()"
+        >
+          Add Shopowner
+        </mat-list-item>
+        <mat-list-item
+          [routerLink]="['/shopowner/list']"
+          routerLinkActive="active"
+          (click)="drawer.toggle()"
+        >
+          List Shopowner
+        </mat-list-item>
+        <mat-list-item
+          [routerLink]="['/product/add']"
+          routerLinkActive="active"
+          (click)="drawer.toggle()"
+        >
+          Add Product
+        </mat-list-item>
+        <mat-list-item
+          [routerLink]="['/product/list']"
+          routerLinkActive="active"
+          (click)="drawer.toggle()"
+        >
+          List Product
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar
+      *ngIf="isToolBarVisible"
+      color="primary"
+      class="mat-elevation-z6"
+    >
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="company-title">Chauhan Traders</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

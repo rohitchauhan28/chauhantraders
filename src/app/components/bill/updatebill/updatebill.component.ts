@@ -18,7 +18,7 @@ export class UpdatebillComponent {
 
   @Input() set productDetails(value:any) {
     this.formGroup.setValue({
-      productName: value.productName,
+      productName: value.product,
       quantityType: value.quantityType,
       quantity: value.quantity
     });

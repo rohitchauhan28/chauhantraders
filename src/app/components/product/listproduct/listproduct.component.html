@@ -1,0 +1,71 @@
+
+
+<div class="main-container">
+  <h1 class="main-title">Product List</h1>
+  <div class="filter-container">
+    <form [formGroup]="filterForm">      
+      <mat-form-field appearance="fill" class="w100">
+        <mat-label>Select filter type</mat-label>
+        <mat-select formControlName="filterSearchType">
+          <mat-option *ngFor="let filter of filterType" [value]="filter.value">
+            {{filter.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w100">
+        <mat-label>Search</mat-label>
+        <input matInput formControlName="filterText">
+      </mat-form-field>
+      <button class="mr3" mat-raised-button color="primary" [disabled]="!filterForm.valid" (click)="filterList()">
+        Filter products
+      </button>
+      <button mat-raised-button color="primary" [disabled]="!isFilterApplied" (click)="resetList()">
+        Filter Reset
+      </button>
+    </form>
+
+  </div>
+  <div class="productlist-container">
+    <ng-container *ngFor="let product of filteredProductList">
+      <div class="card">
+        <div class="text-right">
+          <button mat-mini-fab color="primary" (click)="triggerEditHandler(product.productId)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <div class="productdetails">
+          <div class="productdetails-item">
+            <div class="productdetails-item_title">Product Id</div>
+            <div class="productdetails-item_value">{{product?.productId}}</div>
+          </div>
+          <div class="productdetails-item">
+            <div class="productdetails-item_title">Product Name</div>
+            <div class="productdetails-item_value">{{product?.productName}}</div>
+          </div>
+          <div class="productdetails-item">
+            <div class="productdetails-item_title">Price per Unit</div>
+            <div class="productdetails-item_value">{{product?.pricePerUnit}}</div>
+          </div>
+          <div class="productdetails-item">
+            <div class="productdetails-item_title">Price Per Pack</div>
+            <div class="productdetails-item_value">{{product?.pricePerPack}}</div>
+          </div>
+          <div class="productdetails-item">
+            <div class="productdetails-item_title">Quantity Per Pack</div>
+            <div class="productdetails-item_value">{{product?.quantityPerPack}}</div>
+          </div>
+          <div class="productdetails-item">
+            <div class="productdetails-item_title">Price Per Box</div>
+            <div class="productdetails-item_value">{{product?.pricePerBox}}</div>
+          </div>
+          <div class="productdetails-item">
+            <div class="productdetails-item_title">Quantity Per Box</div>
+            <div class="productdetails-item_value">{{product?.quantityPerPack}}</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  
+</div>
+

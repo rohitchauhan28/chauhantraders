@@ -1,0 +1,59 @@
+<div class="page-wrapper p16">
+  <div class="flexBC">
+    <h3 class="m0 fw500">Cart</h3>
+    <button mat-mini-fab color="primary" (click)="editCartBtnClicked()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+
+  <div class="flexBC fw500">
+    <div>{{cartDetails?.shop?.shopName}}</div>
+  </div>
+
+  <div class="cart">
+    <div class="cart-header">
+      <div class="pname">Product Name</div>
+      <div class="quantity">Quantity</div>
+      <div class="price">Price</div>
+    </div>
+    <div class="cart-content">
+      <ng-container *ngFor="let item of cartDetails?.productList">
+        <div class="cart-content-row">
+          <div class="pname">{{item?.product?.productName}}</div>
+          <div class="quantity"> 
+            <ng-container [ngSwitch]="item?.quantityType">
+              <ng-container *ngSwitchCase="'Unit'">
+                {{item?.quantity}}U
+              </ng-container>
+              <ng-container *ngSwitchCase="'Pack'">
+                {{item?.quantity}}P
+              </ng-container>
+              <ng-container *ngSwitchCase="'Box'">
+                {{item?.quantity}}B
+              </ng-container>
+            </ng-container>
+          </div>
+          <div class="price">
+            <ng-container [ngSwitch]="item?.quantityType">
+              <ng-container *ngSwitchCase="'Unit'">
+                {{item?.quantity * item.product.pricePerUnit}}
+              </ng-container>
+              <ng-container *ngSwitchCase="'Pack'">
+                {{item?.quantity * item.product.pricePerPack}}
+              </ng-container>
+              <ng-container *ngSwitchCase="'Box'">
+                {{item?.quantity * item.product.pricePerBox}}
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="cart-footer">
+      <div class="pname">Total</div>
+      <div class="quantity">{{cartDetails.productList.length}}</div>
+      <div class="price">{{cartTotalAmount}}</div>
+    </div>
+  </div>
+  <button mat-raised-button color="primary"  (click)="triggerPlaceOrderHandler($event)">Place order</button>
+</div>

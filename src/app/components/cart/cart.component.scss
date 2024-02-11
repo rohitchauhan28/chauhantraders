@@ -1,0 +1,45 @@
+$pname-width: calc(100% - 150px); 
+$quantity-width: 75px; 
+$price-width: 75px; 
+
+
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  .cart {
+    .pname {
+      width: $pname-width;
+      text-align: center;
+      padding: 10px 15px;
+    }
+    .quantity {
+      width: $quantity-width;
+      text-align: center;
+      padding: 10px 0 10px 15px;
+    }
+    .price {
+      width: $price-width;
+      text-align: end;
+      padding: 10px 0 10px 15px;
+    }
+    
+    .cart-header {
+      display: flex;
+      border-bottom: 1px solid #3f51b5;
+      font-weight: 500;
+    }
+    .cart-content {
+      .cart-content-row {
+        display: flex;
+        border-bottom: 1px solid #3f51b5;
+      }
+    }
+    .cart-footer {
+      display: flex;
+      border-bottom: 1px solid #3f51b5;
+      font-weight: 500;
+    }
+  }
+}

@@ -1,36 +1,139 @@
-<form style="
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 16px 16px 0 16px;
-  ">
-  <h1 class="bold text-center">Create Bill</h1>
-  <mat-form-field style="height: 55px">
-    <mat-label>Select shop</mat-label>
-    <input
-      type="text"
-      placeholder="Search shop..."
-      aria-label="Select shop"
-      matInput
-      [formControl]="myControl"
-      [matAutocomplete]="auto"
-      (keyup)="onSearch($event)"
-      autofocus
-    />
-    <mat-autocomplete
-      autoActiveFirstOption
-      #auto="matAutocomplete"
-      (optionSelected)="optionSelectedEvent($event)"
-      [displayWith]="getDisplayValue"
-    >
-      <mat-option
-        *ngFor="let option of filteredOptions | async"
-        [value]="option"
+<div class="p16">
+  <form [formGroup]="billsFormGroup" class="form-container" #el>
+    <h1 class="fw600">Create bill</h1>
+    <mat-form-field class="w100">
+      <mat-label>Select shop</mat-label>
+      <input
+        type="text"
+        placeholder="Search shop..."
+        aria-label="Select shop"
+        matInput
+        formControlName="shop"
+        [matAutocomplete]="auto"
+        (keyup)="onShopSearch($event)"
+        autofocus
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #auto="matAutocomplete"
+        (optionSelected)="shopSelectedEvent($event)"
+        [displayWith]="getShopDisplayValue"
       >
-        {{ option.ownerName }} - {{ option.shopName }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
+        <mat-option
+          *ngFor="let item of filteredShopList | async"
+          [value]="item"
+        >
+          {{ item.ownerName }} - {{ item.shopName }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    
+    <ng-container formArrayName="productList">
+      <ng-container *ngFor="let product of productListFormGroup.controls; let i = index; let last = last; let first = first;">
+        <ng-container [formGroupName]="i">
+          <ng-container *ngIf="last; else displayInChipForm">
+            <ng-container *ngIf="!isUpdateFormViewVisible; else updateForm">
 
-<app-bill-form></app-bill-form>
+              <mat-form-field>
+                <mat-label>Product name</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="product"
+                  [matAutocomplete]="auto"
+                  (keyup)="onProductNameSearch(i)"
+                  id="product-name-input"
+                  required
+                />
+                <mat-autocomplete
+                  autoActiveFirstOption
+                  #auto="matAutocomplete"
+                  [displayWith]="getProductNameDisplayValue"
+                  (optionSelected)="productNameSelectedEvent($event)"
+                >
+                  <mat-option
+                    *ngFor="let product of filteredProductNameList | async"
+                    [value]="product"
+                  >
+                    {{ product.productName }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+  
+              <mat-form-field>
+                <mat-label>Select quantity type</mat-label>
+                <mat-select formControlName="quantityType" required>
+                  <mat-option
+                    *ngFor="let type of quantityTypes"
+                    [value]="type"
+                  >
+                    {{ type }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+              <mat-form-field>
+                <mat-label>Enter quantity</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  formControlName="quantity"
+                  required
+                />
+              </mat-form-field>
+  
+              <div class="button-container">
+                <button
+                  class="button"
+                  mat-raised-button
+                  type="submit"
+                  color="primary"
+                  (click)="addedAllProductsEvent()"
+                  [disabled]="!productListFormGroup.controls[i].valid"
+                >
+                  Create bill
+                </button>
+                <button
+                  class="button"
+                  mat-raised-button
+                  type="button"
+                  color="primary"
+                  (click)="addNextProductsEvent($event)"
+                  [disabled]="!productListFormGroup.controls[i].valid"
+                >
+                  Next product
+                </button>
+              </div>
+            </ng-container>
+            <ng-template #updateForm>
+              <app-updatebill
+                [productDetails]="updateProductDetails"
+                (cancelButtonClick)="handleUpdateCancelButtonClick()"
+                (updateButtonClick)="handleUpdateButtonClick($event)"
+              ></app-updatebill>
+            </ng-template>
+          </ng-container>
+          <ng-template #displayInChipForm>
+            <button
+              class="chip"
+              aria-label="Remove orange"
+              (click)="editButtonClick($event,i)"
+            >
+              <div class="flexBC">
+                {{ getProductName(i) }}
+                <mat-icon
+                  style="padding-left: 8px"
+                  (click)="removeProduct(i)"
+                >cancel</mat-icon>
+              </div>
+            </button>
+          </ng-template>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </form>
+</div>
+
+
+
+<!-- <app-bill-form></app-bill-form> -->
